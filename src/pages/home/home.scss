@@ -1,0 +1,59 @@
+@keyframes mymove {
+  from { top: 0;  }
+  to   { top: 90px; }
+
+}
+
+.divBotones{
+  position: absolute;
+  animation-name: mymove;
+  animation:mymove 5s forwards;
+
+
+}
+.divContent{
+  width: 150px;
+  margin: 0 auto;
+  display: none
+}
+
+.divAnimationIntro{
+  position: relative;
+}
+.divAnimationFinal{
+  position: relative;
+  display: none;
+}
+
+.botonV{
+  width:60px;
+  height:60px;
+  background-color:#03800b;
+  margin-right:120px;
+  margin-left:-40px;
+  float: left;
+  border-radius: 50px;
+  font-size:11px;
+  line-height:32px;
+  text-transform: uppercase;
+  animation-duration: 5s;
+  animation-name: mymove;
+  animation:mymove 5s forwards;
+
+
+}
+
+
+.botonR{
+  width:60px;
+  height:60px;
+  background-color:red;
+  border-radius: 50px;
+  font-size:11px;
+  line-height:32px;
+  animation-duration: 5s;
+  float:right;
+  animation-name: mymove;
+  animation:mymove 5s forwards;
+
+}

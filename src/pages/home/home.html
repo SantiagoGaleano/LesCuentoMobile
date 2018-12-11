@@ -1,0 +1,38 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      Ionic Blank
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<div class = "divAnimationIntro">
+        <lottie-animation-view
+                          [options]="lottieConfig"
+                          [width]="300"
+                          [height]="600"
+                          (animCreated)="handleAnimation($event)">
+          </lottie-animation-view>
+</div>
+<div class = "divAnimationFinal" >
+  <lottie-animation-view
+                    [options]="lottieConfig2"
+                    [width]="300"
+                    [height]="600"
+                    (animCreated)="handleAnimation($event)">
+    </lottie-animation-view>
+</div>
+
+
+<div class = "divContent"  >
+  <div class= "divBotones" >
+    <button  class ="botonV" id ="botonV" ion-button  ></button>
+    <button (click)="goNombre()" class ="botonR" id= "botonR" ion-button></button>
+  </div>
+</div>
+
+
+
+</ion-content>
