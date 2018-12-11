@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegistroEdadPage } from '../registro-edad/registro-edad';
+import { AudioProvider } from './../../providers/audio/audio';
 
 /**
  * Generated class for the RegistroApellidoPage page.
@@ -16,7 +17,7 @@ import { RegistroEdadPage } from '../registro-edad/registro-edad';
 })
 export class RegistroApellidoPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private audio: AudioProvider) {
   }
 
   ionViewDidLoad() {
@@ -29,6 +30,10 @@ export class RegistroApellidoPage {
 
   goBack():void {
     this.navCtrl.pop();
+  }
+
+  suApellido(){
+    this.audio.playAudio('../../assets/sounds/suApellido.mp3');
   }
 
 }

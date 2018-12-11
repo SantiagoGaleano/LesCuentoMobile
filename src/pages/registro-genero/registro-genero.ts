@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { RegistroCiudadPage } from '../registro-ciudad/registro-ciudad';
+import { AudioProvider } from './../../providers/audio/audio';
+
 
 /**
  * Generated class for the RegistroGeneroPage page.
@@ -16,7 +18,7 @@ import { RegistroCiudadPage } from '../registro-ciudad/registro-ciudad';
 })
 export class RegistroGeneroPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private audio: AudioProvider) {
   }
 
   ionViewDidLoad() {
@@ -30,6 +32,10 @@ export class RegistroGeneroPage {
 
   goCiudad():void {
     this.navCtrl.push(RegistroCiudadPage);
+  }
+
+  suGenero(){
+    this.audio.playAudio('../../assets/sounds/suGenero.mp3');
   }
 
 }
