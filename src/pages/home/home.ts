@@ -1,4 +1,5 @@
 import { RegistroNombrePage } from './../registro-nombre/registro-nombre';
+import { AudioProvider } from './../../providers/audio/audio';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
@@ -12,7 +13,10 @@ export class HomePage {
   public lottieConfig2: Object;
   private anim: any;
 
-  constructor(public navCtrl: NavController) {
+  constructor(
+    public navCtrl: NavController,
+    private audio: AudioProvider
+  ) {
 
 
 
@@ -31,10 +35,11 @@ export class HomePage {
 
     };
 
-   let  audio=new Audio();
-    audio.src = "../../assets/sounds/alba.mp3";
-    audio.load();
-    audio.play();
+  //  let  audio=new Audio();
+  //   audio.src = "../../assets/sounds/alba.mp3";
+  //   audio.load();
+  //   audio.play();
+    this.audio.playAudio('../../assets/sounds/alba.mp3');
 
 
 
@@ -66,9 +71,13 @@ export class HomePage {
   }
 
   goNombre():void {
+    this.audio.stopAudio();
     this.navCtrl.push(RegistroNombrePage);
+    this.audio.playAudio('../../assets/sounds/respondaAhora.mp3');
 
   }
+
+
 
 
 
