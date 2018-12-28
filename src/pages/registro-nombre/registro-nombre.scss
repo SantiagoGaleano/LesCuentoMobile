@@ -1,3 +1,17 @@
+
+  
+ .lblTexto{
+   
+   background-color: #32ab94;
+   font-size: 30px;
+   padding-right: 30px;
+   padding-left:30px;
+   margin-left: 110px;
+   margin-right: 110px;
+   margin-top:85px;
+
+ }
+
 .fondo{
   background-color: #00BCD4;
 }
@@ -5,7 +19,31 @@
 .bPLay{
   background-color:#32AB94;
 }
-
-.bSiguiente {
-  background-color:#F3DF1D;
+.divBtnAtras{
+  text-align: right;
 }
+.btnAtras{
+  width: 55px;
+  height: 55px;
+  margin-top: 20px;
+}
+.svgAtras{
+  .cls-1{fill:#32ab94;}
+  .cls-2{fill:#fff;}
+}
+
+.btnHablar{
+  width: 95px;
+  
+}
+.svgHablar{
+  .cls-1{fill:#f3df1d;}.cls-2{fill:#fff;}
+}
+.divCedula{
+  margin-top:60px;
+  margin-bottom: 30px;  
+  
+  width: 200px;
+    
+}
+

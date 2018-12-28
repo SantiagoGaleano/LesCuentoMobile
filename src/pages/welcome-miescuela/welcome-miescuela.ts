@@ -3,12 +3,7 @@ import { Component } from '@angular/core';
 import { AudioProvider } from './../../providers/audio/audio';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 
-/**
- * Generated class for the WelcomeMiescuelaPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+
 
 @IonicPage()
 @Component({
@@ -23,15 +18,12 @@ export class WelcomeMiescuelaPage {
 
   constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider) {
     this.lottieConfig = {
-      path: 'assets/inicio.json',
+      path: 'assets/Inicio.json',
       autoplay:true,
       loop:false
   }
 
-  // let audio = new Audio();
-  //   audio.src = "../../assets/sounds/cabezote.mp3";
-  //   audio.load();
-  //   audio.play();
+  
 
   this.audio.playAudio('../../assets/sounds/cabezote.mp3');
 }

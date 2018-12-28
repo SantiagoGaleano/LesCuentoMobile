@@ -32,6 +32,8 @@ export class RegistroNombrePage {
   goApellido():void{
     this.navCtrl.push(RegistroApellidoPage);
   }
-
+  goBack():void {
+    this.navCtrl.pop();
+  }
 
 }
