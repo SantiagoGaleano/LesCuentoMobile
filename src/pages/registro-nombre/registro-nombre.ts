@@ -20,13 +20,13 @@ export class RegistroNombrePage {
   constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider) {
   }
 
+  
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroNombrePage');
     this.audio.playAudio('../../assets/sounds/respondaAhora.mp3');
-  }
-
-  suNombre(){
-    this.audio.playAudio('../../assets/sounds/suNombre.mp3');
+    let audioNombre = setTimeout(()=> {
+      this.audio.playAudio('../../assets/sounds/suNombre.mp3');
+    },7000);
   }
 
   goApellido():void{

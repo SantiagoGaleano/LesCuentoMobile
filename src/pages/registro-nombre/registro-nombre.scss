@@ -19,19 +19,31 @@
 .bPLay{
   background-color:#32AB94;
 }
-.divBtnAtras{
-  text-align: right;
+.divBotonesNav{
+  text-align: center;
 }
-.btnAtras{
+.btnAdelante{
+  margin-left:35px;
   width: 55px;
   height: 55px;
   margin-top: 20px;
+  text-align: right;
+}
+.btnAtras{
+  margin-right: 150px;
+  width: 55px;
+  height: 55px;
+  margin-top: 20px;
+  text-align:left;
 }
 .svgAtras{
   .cls-1{fill:#32ab94;}
   .cls-2{fill:#fff;}
 }
-
+.svgAdelante{
+  .cls-1{fill:#32ab94;}
+  .cls-2{fill:#fff;}
+}
 .btnHablar{
   width: 95px;
   

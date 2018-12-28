@@ -73,8 +73,6 @@ export class HomePage {
   goNombre():void {
     this.audio.stopAudio();
     this.navCtrl.push(RegistroNombrePage);
-    this.audio.playAudio('../../assets/sounds/respondaAhora.mp3');
-
   }
 
 
