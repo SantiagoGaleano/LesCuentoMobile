@@ -17,6 +17,8 @@ import { RegistroNombrePage } from '../pages/registro-nombre/registro-nombre';
 import { RegistroCedulaPage } from '../pages/registro-cedula/registro-cedula';
 import { RegistroGeneroPage } from '../pages/registro-genero/registro-genero';
 import { AudioProvider } from '../providers/audio/audio';
+import { SpeechRecognition } from '@ionic-native/speech-recognition';
+
 
 @NgModule({
   declarations: [
@@ -50,10 +52,12 @@ import { AudioProvider } from '../providers/audio/audio';
     RegistroCiudadPage
   ],
   providers: [
-    StatusBar,
+        StatusBar,
     SplashScreen,
+    SpeechRecognition,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    AudioProvider
+    AudioProvider,
+
   ]
 })
 export class AppModule {}
