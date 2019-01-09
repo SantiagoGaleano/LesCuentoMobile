@@ -22,7 +22,7 @@ import { ChangeDetectorRef } from '@angular/core';
 export class RegistroNombrePage {
   matches: String[];
   isRecording = false;
-  texto: any; 
+  textoNombre: any;
   constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
 
@@ -55,7 +55,7 @@ export class RegistroNombrePage {
 
 
     let options = {
-      language: 'en-ES'
+      language: 'es-MX'
     }
     this.speechRecognition.startListening(options).subscribe(matches => {
       this.matches = matches;
@@ -63,13 +63,13 @@ export class RegistroNombrePage {
     });
     this.isRecording = true;
 
-    
+
   }
 
   completarTexto(){
-    this.texto = "";
+    this.textoNombre = "";
      for (let index of this.matches) {
-       this.texto += index;
+       this.textoNombre += index;
      }
   }
 
@@ -77,8 +77,8 @@ export class RegistroNombrePage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroNombrePage');
-    
-    
+
+
     this.getPermission();
     this.audio.playAudio('../../assets/sounds/respondaAhora.mp3');
 
@@ -91,19 +91,18 @@ export class RegistroNombrePage {
     setTimeout(()=> {
       this.completarTexto();
       this.tts.speak({
-        text:  "Usted ha dicho " + this.texto,
+        text:  "Usted ha dicho " + this.textoNombre ,
         locale: 'es-MX',
         rate: 1});
-    },20000);
+    },17000);
 
-    
-    
+
+
   }
-  
-  
 
   goApellido():void{
     this.navCtrl.push(RegistroApellidoPage);
+    return;
   }
   goBack():void {
     this.navCtrl.pop();
