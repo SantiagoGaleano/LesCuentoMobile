@@ -3,5 +3,9 @@
   "integrations": {
     "cordova": {}
   },
+  "proxies": [{
+    "path": "/api-rest",
+    "proxyUrl": "[https://lescuento.herokuapp.com]"
+    }],
   "type": "ionic-angular"
 }

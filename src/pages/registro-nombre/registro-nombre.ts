@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams,Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,Platform,AlertController } from 'ionic-angular';
 import { RegistroApellidoPage } from '../registro-apellido/registro-apellido';
 import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
+import { RestProvider } from '../../providers/rest/rest';
 
 
 /**
@@ -23,7 +24,7 @@ export class RegistroNombrePage {
   matches: String[];
   isRecording = false;
   textoNombre: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
 
   isIos() {
@@ -66,12 +67,12 @@ export class RegistroNombrePage {
 
   }
 
-  completarTexto(){
-    this.textoNombre = "";
-     for (let index of this.matches) {
-       this.textoNombre += index;
-     }
-  }
+  // completarTexto(){
+  //   this.textoNombre = "";
+  //    for (let index of this.matches) {
+  //      this.textoNombre += index;
+  //    }
+  // }
 
 
 
@@ -86,26 +87,71 @@ export class RegistroNombrePage {
       this.audio.playAudio('../../assets/sounds/suNombre.mp3');
     },7000);
     setTimeout(()=> {
-    this.startListening();
+    
     },11000);
-    setTimeout(()=> {
-      this.completarTexto();
-      this.tts.speak({
-        text:  "Usted ha dicho " + this.textoNombre ,
-        locale: 'es-MX',
-        rate: 1});
-    },17000);
+    // setTimeout(()=> {
+    //   this.completarTexto();
+    //   this.tts.speak({
+    //     text:  "Usted ha dicho " + this.textoNombre ,
+    //     locale: 'es-MX',
+    //     rate: 1});
+    // },17000);
 
 
 
   }
 
+  errorFunc(message){
+    let alert = this.alertCtrl.create({
+      title: 'Warining!',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  myRegister(){
+ 
+    if (this.textoNombre.trim() ) {    
+      
+      console.log(this.textoNombre.trim() )
+       
+      if (this.textoNombre.trim()  === '') {
+        this.errorFunc('Por favor diga su nombre de nuevo')
+ 
+      }else{
+ 
+        let credentials = {
+          nombres: this.textoNombre 
+        };
+ 
+        
+         this.registerService.crearCuenta(credentials).then((result) => {
+            console.log(result);
+                       
+        }, (err) => {
+     
+            console.log(err);
+            this. errorFunc('Wrong credentials ! try again')
+            console.log("credentials: "+ JSON.stringify(credentials))
+            
+        });
+ 
+      }
+      
+   }
+   
+
+}
+
   goApellido():void{
     this.navCtrl.push(RegistroApellidoPage);
-    return;
+    
   }
   goBack():void {
     this.navCtrl.pop();
   }
+
+
 
 }

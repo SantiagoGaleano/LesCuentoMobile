@@ -7,6 +7,8 @@ import { ErrorHandler, NgModule } from '@angular/core';
 import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { StatusBar } from '@ionic-native/status-bar';
+import { IonicStorageModule } from '@ionic/storage';
+import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
@@ -14,11 +16,13 @@ import { WelcomeMiescuelaPage } from './../pages/welcome-miescuela/welcome-miesc
 
 import { LottieAnimationViewModule } from 'ng-lottie';
 import { RegistroNombrePage } from '../pages/registro-nombre/registro-nombre';
+
 import { RegistroCedulaPage } from '../pages/registro-cedula/registro-cedula';
 import { RegistroGeneroPage } from '../pages/registro-genero/registro-genero';
 import { AudioProvider } from '../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
+import { RestProvider } from '../providers/rest/rest';
 
 @NgModule({
   declarations: [
@@ -36,7 +40,9 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
-    LottieAnimationViewModule.forRoot()
+    LottieAnimationViewModule.forRoot(),
+    IonicStorageModule.forRoot(),
+    HttpModule
 
   ],
   bootstrap: [IonicApp],
@@ -58,6 +64,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
     TextToSpeech,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioProvider,
+    RestProvider,
 
   ]
 })
