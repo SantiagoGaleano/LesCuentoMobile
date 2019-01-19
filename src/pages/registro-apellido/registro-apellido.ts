@@ -1,3 +1,6 @@
+
+
+
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
 import { RegistroEdadPage } from '../registro-edad/registro-edad';
@@ -5,6 +8,9 @@ import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import {Registro as Registro } from '../../app/app.config'
+
 
 /**
  * Generated class for the RegistroApellidoPage page.
@@ -23,7 +29,8 @@ export class RegistroApellidoPage {
   isRecording = false;
   textoApellidos: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(public navCtrl: NavController,private storage: Storage, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+
   }
 
   stopListening() {
@@ -67,19 +74,30 @@ export class RegistroApellidoPage {
      for (let index of this.matches) {
        this.textoApellidos = index;
      }
+
+     this.storage.set(Registro.apellido, this.textoApellidos);
+
   }
 
 
 
 
   ionViewDidLoad() {
+
+    this.storage.get(Registro.nombre).then((val) => {
+      console.log('El nombre en la pagina apellido es ', val);
+
+   });
+
+
     console.log('ionViewDidLoad RegistroApellidoPage');
        this.audio.playAudio('../../assets/sounds/suApellido.mp3');
 
       setTimeout(()=> {
       this.startListening();
       },5000);
-      setTimeout(()=> {
+      setTimeout(()=>
+      {
         this.completarTexto();
         this.tts.speak({
           text:  "Usted ha dicho " + this.textoApellidos,
@@ -91,6 +109,7 @@ export class RegistroApellidoPage {
 
   goEdad():void {
     this.navCtrl.push(RegistroEdadPage);
+
   }
 
   goBack():void {

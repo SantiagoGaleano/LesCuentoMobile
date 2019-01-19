@@ -5,7 +5,8 @@ import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
-
+import { Storage } from '@ionic/storage';
+import {Registro as Registro } from '../../app/app.config'
 
 /**
  * Generated class for the RegistroGeneroPage page.
@@ -24,7 +25,7 @@ export class RegistroGeneroPage {
   isRecording = false;
   textoGenero: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(private storage: Storage,public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
 
   isIos() {
@@ -72,6 +73,8 @@ export class RegistroGeneroPage {
      for (let index of this.matches) {
        this.textoGenero = index;
      }
+     this.storage.set(Registro.genero, this.textoGenero);
+
   }
 
 
@@ -79,7 +82,7 @@ export class RegistroGeneroPage {
     console.log('ionViewDidLoad RegistroGeneroPage');
     this.audio.playAudio('../../assets/sounds/suGenero.mp3');
 
-   
+
     setTimeout(()=> {
     this.startListening();
     },5000);
@@ -101,6 +104,6 @@ export class RegistroGeneroPage {
     this.navCtrl.push(RegistroCiudadPage);
   }
 
- 
+
 
 }

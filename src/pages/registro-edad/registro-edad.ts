@@ -5,6 +5,8 @@ import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import {Registro as Registro } from '../../app/app.config'
 /**
  * Generated class for the RegistroEdadPage page.
  *
@@ -22,7 +24,7 @@ export class RegistroEdadPage {
   isRecording = false;
   textoEdad: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
 
   stopListening() {
@@ -66,6 +68,9 @@ export class RegistroEdadPage {
      for (let index of this.matches) {
        this.textoEdad = index;
      }
+
+     this.storage.set(Registro.edad, this.textoEdad);
+
   }
 
 

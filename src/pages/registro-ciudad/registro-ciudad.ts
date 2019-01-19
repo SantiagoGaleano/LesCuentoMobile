@@ -1,9 +1,12 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform ,AlertController} from 'ionic-angular';
 import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
+import { Storage } from '@ionic/storage';
+import {Registro as Registro } from '../../app/app.config'
+import { RestProvider } from '../../providers/rest/rest';
 
 /**
  * Generated class for the RegistroCiudadPage page.
@@ -18,12 +21,27 @@ import { ChangeDetectorRef } from '@angular/core';
   templateUrl: 'registro-ciudad.html',
 })
 export class RegistroCiudadPage {
+
+  nombreInser: any;
+  apellidoInser:any;
+  edadInser:any;
+  generoInser:any;
+  cedulaInser:any;
+  ciudadInser:any;
   matches: String[];
   isRecording = false;
   textoCiudad: any;
 
 
-  constructor(public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(public alertCtrl:  AlertController,private registerService: RestProvider,private storage: Storage,public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+
+  this.nombreInser ='';
+  this.apellidoInser= '';
+  this.edadInser='';
+  this.generoInser='';
+  this.cedulaInser='';
+  this.ciudadInser='';
+
   }
 
   stopListening() {
@@ -67,6 +85,9 @@ export class RegistroCiudadPage {
      for (let index of this.matches) {
        this. textoCiudad = index;
      }
+
+     this.storage.set(Registro.ciudad, this.textoCiudad);
+
   }
 
 
@@ -86,6 +107,87 @@ export class RegistroCiudadPage {
           rate: 1});
       },16000);
   }
+
+  errorFunc(message){
+    let alert = this.alertCtrl.create({
+      title: 'Warining!',
+      subTitle: message,
+      buttons: ['OK']
+    });
+    alert.present();
+  }
+
+  myRegister(){
+    this.storage.get(Registro.nombre).then((valNombre) => {
+      this.nombreInser=valNombre;
+   });
+
+   this.storage.get(Registro.apellido).then((valApellido) => {
+    this.apellidoInser=valApellido;
+
+ });
+
+ this.storage.get(Registro.ciudad).then((valCiudad) => {
+   this.ciudadInser=valCiudad;
+  console.log('El nombre de la ciudad  ', valCiudad);
+
+});
+
+this.storage.get(Registro.cedula).then((valCedula) => {
+  this.cedulaInser=valCedula;
+  console.log('El nombre de la cedula ', valCedula);
+
+});
+
+this.storage.get(Registro.genero).then((valGenero) => {
+  this.generoInser=valGenero;
+  console.log('El nombre del genero', valGenero);
+
+});
+
+this.storage.get(Registro.edad).then((valEdad) => {
+  this.edadInser=valEdad;
+  console.log('El nombre de la edad ', valEdad);
+
+});
+
+
+        let credentials = {
+          nombres:this.nombreInser,
+          apellidos:this.apellidoInser,
+          edad:this.edadInser,
+          cedula:this.cedulaInser,
+          genero:this.generoInser,
+          ciudad:this.ciudadInser
+
+
+
+
+        };
+
+
+         this.registerService.crearCuenta(credentials).then((result) => {
+            console.log(result);
+
+
+
+
+
+
+
+
+        }, (err) => {
+
+            console.log(err);
+            this. errorFunc('Wrong credentials ! try again')
+            console.log("credentials: "+ JSON.stringify(credentials))
+
+
+        });
+
+      }
+
+
 
   goBack():void {
     this.navCtrl.pop();

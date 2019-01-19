@@ -6,7 +6,8 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
 import { RestProvider } from '../../providers/rest/rest';
-
+import { Storage } from '@ionic/storage';
+import {Registro as Registro } from '../../app/app.config'
 
 /**
  * Generated class for the RegistroNombrePage page.
@@ -24,7 +25,7 @@ export class RegistroNombrePage {
   matches: String[];
   isRecording = false;
   textoNombre: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech,private storage: Storage ) {
   }
 
   isIos() {
@@ -67,12 +68,12 @@ export class RegistroNombrePage {
 
   }
 
-  // completarTexto(){
-  //   this.textoNombre = "";
-  //    for (let index of this.matches) {
-  //      this.textoNombre += index;
-  //    }
-  // }
+  completarTexto(){
+     this.textoNombre = "";
+      for (let index of this.matches) {
+        this.textoNombre += index;
+     }
+   }
 
 
 
@@ -87,15 +88,15 @@ export class RegistroNombrePage {
       this.audio.playAudio('../../assets/sounds/suNombre.mp3');
     },7000);
     setTimeout(()=> {
-    
+
     },11000);
-    // setTimeout(()=> {
-    //   this.completarTexto();
-    //   this.tts.speak({
-    //     text:  "Usted ha dicho " + this.textoNombre ,
-    //     locale: 'es-MX',
-    //     rate: 1});
-    // },17000);
+     setTimeout(()=> {
+      this.completarTexto();
+      this.tts.speak({
+       text:  "Usted ha dicho " + this.textoNombre ,
+       locale: 'es-MX',
+        rate: 1});
+     },17000);
 
 
 
@@ -111,42 +112,55 @@ export class RegistroNombrePage {
   }
 
   myRegister(){
- 
-    if (this.textoNombre.trim() ) {    
-      
+
+    if (this.textoNombre.trim() ) {
+
       console.log(this.textoNombre.trim() )
-       
+
       if (this.textoNombre.trim()  === '') {
         this.errorFunc('Por favor diga su nombre de nuevo')
- 
+
       }else{
- 
+
         let credentials = {
-          nombres: this.textoNombre 
+          nombres: this.textoNombre
         };
- 
-        
+
+
          this.registerService.crearCuenta(credentials).then((result) => {
             console.log(result);
-                       
+
+            this.storage.set(Registro.nombre, this.textoNombre);
+
+
+
+
+
+
         }, (err) => {
-     
+
             console.log(err);
             this. errorFunc('Wrong credentials ! try again')
             console.log("credentials: "+ JSON.stringify(credentials))
-            
+
+
         });
- 
+
       }
-      
+
    }
-   
+
 
 }
 
+
+
+
+
+
   goApellido():void{
     this.navCtrl.push(RegistroApellidoPage);
-    
+
   }
   goBack():void {
     this.navCtrl.pop();
