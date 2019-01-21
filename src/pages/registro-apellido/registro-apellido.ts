@@ -1,8 +1,5 @@
-
-
-
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform ,AlertController  } from 'ionic-angular';
 import { RegistroEdadPage } from '../registro-edad/registro-edad';
 import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
@@ -10,6 +7,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Registro as Registro } from '../../app/app.config'
+import { RestProvider } from '../../providers/rest/rest';
 
 
 /**
@@ -28,10 +26,12 @@ export class RegistroApellidoPage {
   matches: String[];
   isRecording = false;
   textoApellidos: any;
-
-  constructor(public navCtrl: NavController,private storage: Storage, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
-
+  
+  constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  this.textoApellidos="";
   }
+
+ 
 
   stopListening() {
     this.speechRecognition.stopListening().then(() => {
@@ -69,44 +69,47 @@ export class RegistroApellidoPage {
 
   }
 
-  completarTexto(){
-    this.textoApellidos = "";
-     for (let index of this.matches) {
-       this.textoApellidos = index;
-     }
+  // completarTexto(){
+  //   this.textoApellidos = "";
+  //    for (let index of this.matches) {
+  //      this.textoApellidos = index;
+  //    }
 
-     this.storage.set(Registro.apellido, this.textoApellidos);
+     
 
-  }
+  // }
 
 
 
 
   ionViewDidLoad() {
 
-    this.storage.get(Registro.nombre).then((val) => {
-      console.log('El nombre en la pagina apellido es ', val);
-
-   });
-
-
-    console.log('ionViewDidLoad RegistroApellidoPage');
+      console.log('ionViewDidLoad RegistroApellidoPage');
        this.audio.playAudio('../../assets/sounds/suApellido.mp3');
+       
 
-      setTimeout(()=> {
-      this.startListening();
-      },5000);
-      setTimeout(()=>
-      {
-        this.completarTexto();
-        this.tts.speak({
-          text:  "Usted ha dicho " + this.textoApellidos,
-          locale: 'es-MX',
-          rate: 1});
-      },16000);
-
+      // setTimeout(()=> {
+      // this.startListening();
+      // },5000);
+      // setTimeout(()=>
+      // {
+      //   this.completarTexto();
+      //   this.tts.speak({
+      //     text:  "Usted ha dicho " + this.textoApellidos,
+      //     locale: 'es-MX',
+      //     rate: 1});
+      // },16000);
+     
   }
 
+  cargarApellido(){
+    this.storage.set(Registro.apellido, this.textoApellidos);
+    this.storage.get(Registro.apellido).then((valApellido) => {
+      console.log("la variable apellido tiene: ", valApellido);
+  
+   });
+  }
+  
   goEdad():void {
     this.navCtrl.push(RegistroEdadPage);
 

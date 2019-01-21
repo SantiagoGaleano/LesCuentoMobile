@@ -5,7 +5,7 @@ import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
-import { RestProvider } from '../../providers/rest/rest';
+// import { RestProvider } from '../../providers/rest/rest';
 import { Storage } from '@ionic/storage';
 import {Registro as Registro } from '../../app/app.config'
 
@@ -25,9 +25,13 @@ export class RegistroNombrePage {
   matches: String[];
   isRecording = false;
   textoNombre: any;
-  constructor(public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech,private storage: Storage ) {
+  txtNom: any;
+  constructor(public navCtrl: NavController, public navParams: NavParams, private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech,private storage: Storage ) {
+  this.textoNombre="";
+  this.txtNom="";
   }
 
+  
   isIos() {
     return this.plt.is('ios');
   }
@@ -75,12 +79,14 @@ export class RegistroNombrePage {
      }
    }
 
-
+   ionViewWillEnter(){
+    localStorage.clear();
+   }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroNombrePage');
 
-
+    
     this.getPermission();
     this.audio.playAudio('../../assets/sounds/respondaAhora.mp3');
 
@@ -111,55 +117,67 @@ export class RegistroNombrePage {
     alert.present();
   }
 
-  myRegister(){
+//   myRegister(){
 
-    if (this.textoNombre.trim() ) {
+//     if (this.textoNombre.trim() ) {
 
-      console.log(this.textoNombre.trim() )
+//       console.log(this.textoNombre.trim() )
 
-      if (this.textoNombre.trim()  === '') {
-        this.errorFunc('Por favor diga su nombre de nuevo')
+//       if (this.textoNombre.trim()  === '') {
+//         this.errorFunc('Por favor diga su nombre de nuevo')
 
-      }else{
+//       }else{
 
-        let credentials = {
-          nombres: this.textoNombre
-        };
-
-
-         this.registerService.crearCuenta(credentials).then((result) => {
-            console.log(result);
-
-            this.storage.set(Registro.nombre, this.textoNombre);
+//         let credentials = {
+//           nombres: this.textoNombre
+//         };
 
 
+//          this.registerService.crearCuenta(credentials).then((result) => {
+//             console.log(result);
+
+//             this.storage.set(Registro.nombre, this.textoNombre);
 
 
 
 
-        }, (err) => {
-
-            console.log(err);
-            this. errorFunc('Wrong credentials ! try again')
-            console.log("credentials: "+ JSON.stringify(credentials))
 
 
-        });
+//         }, (err) => {
 
-      }
+//             console.log(err);
+//             this. errorFunc('Wrong credentials ! try again')
+//             console.log("credentials: "+ JSON.stringify(credentials))
 
-   }
+
+//         });
+
+//       }
+
+//    }
+
+
+// }
+
+
+cargarNombre(){
+  this.txtNom=this.textoNombre;
+  console.log("txtNom= ", this.txtNom);
+  this.storage.set(Registro.nombre, this.txtNom);
+  this.storage.get(Registro.nombre).then((valNombre) => {
+    this.txtNom=valNombre;
+    console.log("txtNom= ", this.txtNom);
+    console.log("variable en nombre: ",valNombre);
+ });
 
 
 }
 
 
 
-
-
-
   goApellido():void{
     this.navCtrl.push(RegistroApellidoPage);
+    
 
   }
   goBack():void {

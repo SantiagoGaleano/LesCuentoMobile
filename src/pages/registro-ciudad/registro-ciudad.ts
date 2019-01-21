@@ -33,8 +33,7 @@ export class RegistroCiudadPage {
   textoCiudad: any;
 
 
-  constructor(public alertCtrl:  AlertController,private registerService: RestProvider,private storage: Storage,public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
-
+  constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   this.nombreInser ='';
   this.apellidoInser= '';
   this.edadInser='';
@@ -96,16 +95,41 @@ export class RegistroCiudadPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroCiudadPage');
     this.audio.playAudio('../../assets/sounds/suCiudad.mp3');
-    setTimeout(()=> {
-      this.startListening();
-      },5000);
-      setTimeout(()=> {
-        this.completarTexto();
-        this.tts.speak({
-          text:  "Usted ha dicho " + this.textoCiudad,
-          locale: 'es-MX',
-          rate: 1});
-      },16000);
+    // setTimeout(()=> {
+    //   this.startListening();
+    //   },5000);
+    //   setTimeout(()=> {
+    //     this.completarTexto();
+    //     this.tts.speak({
+    //       text:  "Usted ha dicho " + this.textoCiudad,
+    //       locale: 'es-MX',
+    //       rate: 1});
+    //   },16000);
+    this.storage.get(Registro.nombre).then((valNombre) => {
+      this.nombreInser=valNombre;
+   });
+
+   this.storage.get(Registro.apellido).then((valApellido) => {
+    this.apellidoInser=valApellido;
+
+ });
+ this.storage.get(Registro.cedula).then((valCedula) => {
+  this.cedulaInser=valCedula;
+  console.log('El nombre de la cedula ', this.cedulaInser);
+
+});
+
+this.storage.get(Registro.genero).then((valGenero) => {
+  this.generoInser=valGenero;
+  console.log('El nombre del genero', this.generoInser);
+
+});
+
+this.storage.get(Registro.edad).then((valEdad) => {
+  this.edadInser=valEdad;
+  console.log('El nombre de la edad ', this.edadInser);
+
+});
   }
 
   errorFunc(message){
@@ -118,14 +142,37 @@ export class RegistroCiudadPage {
   }
 
   myRegister(){
-    this.storage.get(Registro.nombre).then((valNombre) => {
-      this.nombreInser=valNombre;
-   });
 
-   this.storage.get(Registro.apellido).then((valApellido) => {
-    this.apellidoInser=valApellido;
+    if (this.textoCiudad.trim() ) {    
 
- });
+      console.log(this.textoCiudad.trim() )
+
+      if (this.textoCiudad.trim()  === '') {
+        this.errorFunc('Por favor diga su nombre de nuevo')
+
+      }else{
+
+        let credentials = {
+          cedula: this.textoCiudad
+        };
+
+
+         this.registerService.crearCuenta(credentials).then((result) => {
+            console.log(result);
+            this.storage.set(Registro.ciudad, this.textoCiudad);
+        }, (err) => {
+
+            console.log(err);
+            this. errorFunc('Wrong credentials ! try again')
+            console.log("credentials: "+ JSON.stringify(credentials))
+
+        });
+
+      }
+
+   }
+
+    
 
  this.storage.get(Registro.ciudad).then((valCiudad) => {
    this.ciudadInser=valCiudad;
@@ -133,23 +180,7 @@ export class RegistroCiudadPage {
 
 });
 
-this.storage.get(Registro.cedula).then((valCedula) => {
-  this.cedulaInser=valCedula;
-  console.log('El nombre de la cedula ', valCedula);
 
-});
-
-this.storage.get(Registro.genero).then((valGenero) => {
-  this.generoInser=valGenero;
-  console.log('El nombre del genero', valGenero);
-
-});
-
-this.storage.get(Registro.edad).then((valEdad) => {
-  this.edadInser=valEdad;
-  console.log('El nombre de la edad ', valEdad);
-
-});
 
 
         let credentials = {

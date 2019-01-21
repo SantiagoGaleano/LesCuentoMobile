@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, Platform } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, Platform,AlertController } from 'ionic-angular';
 import { RegistroCiudadPage } from '../registro-ciudad/registro-ciudad';
 import { AudioProvider } from './../../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
@@ -7,7 +7,7 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { ChangeDetectorRef } from '@angular/core';
 import { Storage } from '@ionic/storage';
 import {Registro as Registro } from '../../app/app.config'
-
+import { RestProvider } from '../../providers/rest/rest';
 /**
  * Generated class for the RegistroGeneroPage page.
  *
@@ -25,7 +25,7 @@ export class RegistroGeneroPage {
   isRecording = false;
   textoGenero: any;
 
-  constructor(private storage: Storage,public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
 
   isIos() {
@@ -73,7 +73,7 @@ export class RegistroGeneroPage {
      for (let index of this.matches) {
        this.textoGenero = index;
      }
-     this.storage.set(Registro.genero, this.textoGenero);
+     
 
   }
 
@@ -83,18 +83,26 @@ export class RegistroGeneroPage {
     this.audio.playAudio('../../assets/sounds/suGenero.mp3');
 
 
-    setTimeout(()=> {
-    this.startListening();
-    },5000);
-    setTimeout(()=> {
-      this.completarTexto();
-      this.tts.speak({
-        text:  "Usted ha dicho " + this.textoGenero,
-        locale: 'es-MX',
-        rate: 1});
-    },12000);
+    // setTimeout(()=> {
+    // this.startListening();
+    // },5000);
+    // setTimeout(()=> {
+    //   this.completarTexto();
+    //   this.tts.speak({
+    //     text:  "Usted ha dicho " + this.textoGenero,
+    //     locale: 'es-MX',
+    //     rate: 1});
+    // },12000);
+    
   }
 
+  cargarGenero(){
+    this.storage.set(Registro.genero, this.textoGenero);
+    this.storage.get(Registro.genero).then((valGenero) => {
+      console.log("la variable apellido tiene: ", valGenero);
+  
+   });
+  }
   goBack():void{
     this.navCtrl.pop();
 
