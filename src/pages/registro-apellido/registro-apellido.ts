@@ -68,15 +68,15 @@ export class RegistroApellidoPage {
 
   }
 
-  // completarTexto(){
-  //   this.textoApellidos = "";
-  //    for (let index of this.matches) {
-  //      this.textoApellidos = index;
-  //    }
+   completarTexto(){
+    this.textoApellidos = "";
+     for (let index of this.matches) {
+       this.textoApellidos = index;
+     }
 
      
 
-  // }
+   }
 
 
 
@@ -85,19 +85,21 @@ export class RegistroApellidoPage {
 
       console.log('ionViewDidLoad RegistroApellidoPage');
        this.audio.playAudio('../../assets/sounds/suApellido.mp3');
+
+       
        
 
-      // setTimeout(()=> {
-      // this.startListening();
-      // },5000);
-      // setTimeout(()=>
-      // {
-      //   this.completarTexto();
-      //   this.tts.speak({
-      //     text:  "Usted ha dicho " + this.textoApellidos,
-      //     locale: 'es-MX',
-      //     rate: 1});
-      // },16000);
+      setTimeout(()=> {
+      this.startListening();
+       },5000);
+       setTimeout(()=>
+       {
+      this.completarTexto();
+         this.tts.speak({
+           text:  "Usted ha dicho " + this.textoApellidos,
+           locale: 'es-MX',
+           rate: 1});
+       },16000);
      
   }
 
@@ -105,11 +107,7 @@ export class RegistroApellidoPage {
     this.storage.set(this.key, this.textoApellidos);
   }
 
-  loadApellidos(){
-    this.storage.get(this.key).then((val) =>{
-        console.log('Tu apellido es', val);
-    });
-  }
+  
 
   
   goEdad():void {

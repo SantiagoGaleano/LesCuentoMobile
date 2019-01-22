@@ -69,35 +69,31 @@ export class RegistroEdadPage {
        this.textoEdad = index;
      }
 
-     this.storage.set(Registro.edad, this.textoEdad);
+    
 
   }
 
 
   ionViewDidLoad() {
-    // console.log('ionViewDidLoad RegistroEdadPage');
-    // this.audio.playAudio('../../assets/sounds/suEdad.mp3');
+     console.log('ionViewDidLoad RegistroEdadPage');
+     this.audio.playAudio('../../assets/sounds/suEdad.mp3');
 
-    // setTimeout(()=> {
-    //   this.startListening();
-    //   },5000);
-    //   setTimeout(()=> {
-    //     this.completarTexto();
-    //     this.tts.speak({
-    //       text:  "Usted ha dicho " + this.textoEdad,
-    //       locale: 'es-MX',
-    //       rate: 1});
-    //   },12000);
+     setTimeout(()=> {
+       this.startListening();
+       },5000);
+       setTimeout(()=> {
+         this.completarTexto();
+         this.tts.speak({
+           text:  "Usted ha dicho " + this.textoEdad,
+           locale: 'es-MX',
+           rate: 1});
+     },12000);
   }
   saveEdad(){
     this.storage.set(this.key, this.textoEdad);
   }
 
-  loadEdad(){
-    this.storage.get(this.key).then((val) =>{
-        console.log('Tu edad es', val);
-    });
-  }
+  
   goCedula():void{
     this.navCtrl.push(RegistroCedulaPage);
   }

@@ -84,16 +84,16 @@ export class RegistroGeneroPage {
     this.audio.playAudio('../../assets/sounds/suGenero.mp3');
 
 
-    // setTimeout(()=> {
-    // this.startListening();
-    // },5000);
-    // setTimeout(()=> {
-    //   this.completarTexto();
-    //   this.tts.speak({
-    //     text:  "Usted ha dicho " + this.textoGenero,
-    //     locale: 'es-MX',
-    //     rate: 1});
-    // },12000);
+     setTimeout(()=> {
+     this.startListening();
+     },5000);
+     setTimeout(()=> {
+       this.completarTexto();
+       this.tts.speak({
+         text:  "Usted ha dicho " + this.textoGenero,
+         locale: 'es-MX',
+         rate: 1});
+     },12000);
     
   }
 
@@ -101,11 +101,7 @@ export class RegistroGeneroPage {
     this.storage.set(this.key, this.textoGenero);
   }
 
-  loadGenero(){
-    this.storage.get(this.key).then((val) =>{
-        console.log('Tu genero es', val);
-    });
-  }
+  
   goBack():void{
     this.navCtrl.pop();
 

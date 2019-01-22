@@ -36,13 +36,6 @@ export class RegistroCiudadPage {
 
 
   constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
-  this.nombreInser ='';
-  this.apellidoInser= '';
-  this.edadInser='';
-  this.generoInser='';
-  this.cedulaInser='';
-  this.ciudadInser='';
-
   }
 
   stopListening() {
@@ -97,10 +90,22 @@ export class RegistroCiudadPage {
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroCiudadPage');
     this.audio.playAudio('../../assets/sounds/suCiudad.mp3');
+    
+    this.loadCiudad();
+    setTimeout(()=> {
+      this.startListening();
+      },5000);
+      setTimeout(()=> {
+        this.completarTexto();
+        this.tts.speak({
+          text:  "Usted ha dicho " + this.textoCiudad,
+          locale: 'es-MX',
+          rate: 1});
+     },18000);
+
+     
 
 
-    this.nombreInser.localStorage.getItem("nombres");
-    console.log("dato: ", this.nombreInser);
   }
 
 
@@ -110,9 +115,34 @@ export class RegistroCiudadPage {
   }
 
   loadCiudad(){
-    this.storage.get(this.key).then((val) =>{
-        console.log('Tu ciudad es', val);
-    });
+    
+
+
+    this.storage.get("nombres").then((val) =>{
+      this.nombreInser=val;
+      console.log('Tu nombre es', val);
+  });
+
+    this.storage.get("apellidos").then((val) =>{
+      this.apellidoInser=val;
+      console.log('Tu apellido es', val);
+  });
+
+  this.storage.get("edad").then((val) =>{
+    this.edadInser=val;
+    console.log('Tu edad es', val);
+  });
+
+  this.storage.get("cedula").then((val) =>{
+    this.cedulaInser=val;
+    console.log('Tu cedula es', val);
+  });
+
+  this.storage.get("genero").then((val) =>{
+    this.generoInser=val;
+    console.log('Tu genero es', val);
+  });
+    
   }
 
   errorFunc(message){
@@ -137,18 +167,18 @@ export class RegistroCiudadPage {
       }else{
 
         let credentials = {
-          nombres: "",
-          apellidos:"",
-          edad:"",
-          cedula: "",
-          genero:"",
+          nombres: this.nombreInser,
+          apellidos:this.apellidoInser,
+          edad:this.edadInser,
+          cedula: this.cedulaInser,
+          genero:this.generoInser,
           ciudad_muni: this.textoCiudad,
         };
 
 
          this.registerService.crearCuenta(credentials).then((result) => {
             console.log(result);
-            this.storage.set(Registro.ciudad, this.textoCiudad);
+           
         }, (err) => {
 
             console.log(err);

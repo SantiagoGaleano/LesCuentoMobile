@@ -83,16 +83,16 @@ export class RegistroCedulaPage {
     console.log('ionViewDidLoad RegistroCedulaPage');
     this.audio.playAudio('../../assets/sounds/suIdentificacion.mp3');
 
-    // setTimeout(()=> {
-    //   this.startListening();
-    //   },5000);
-    //   setTimeout(()=> {
-    //     this.completarTexto();
-    //     this.tts.speak({
-    //       text:  "Usted ha dicho " + this.textoCedula,
-    //       locale: 'es-MX',
-    //       rate: 1});
-    //   },18000);
+     setTimeout(()=> {
+       this.startListening();
+       },5000);
+       setTimeout(()=> {
+         this.completarTexto();
+         this.tts.speak({
+           text:  "Usted ha dicho " + this.textoCedula,
+           locale: 'es-MX',
+           rate: 1});
+      },18000);
     
   }
 
@@ -100,11 +100,7 @@ export class RegistroCedulaPage {
     this.storage.set(this.key, this.textoCedula);
   }
 
-  loadCedula(){
-    this.storage.get(this.key).then((val) =>{
-        console.log('Tu cedula es', val);
-    });
-  }
+  
   goBack():void {
     this.navCtrl.pop();
 

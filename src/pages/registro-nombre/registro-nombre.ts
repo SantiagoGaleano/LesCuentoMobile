@@ -79,10 +79,6 @@ export class RegistroNombrePage {
      }
    }
 
-   ionViewWillEnter(){
-    localStorage.clear();
-   }
-
   ionViewDidLoad() {
     console.log('ionViewDidLoad RegistroNombrePage');
 
@@ -94,7 +90,7 @@ export class RegistroNombrePage {
       this.audio.playAudio('../../assets/sounds/suNombre.mp3');
     },7000);
     setTimeout(()=> {
-
+      this.startListening();
     },11000);
      setTimeout(()=> {
       this.completarTexto();
@@ -117,47 +113,6 @@ export class RegistroNombrePage {
     alert.present();
   }
 
-//   myRegister(){
-
-//     if (this.textoNombre.trim() ) {
-
-//       console.log(this.textoNombre.trim() )
-
-//       if (this.textoNombre.trim()  === '') {
-//         this.errorFunc('Por favor diga su nombre de nuevo')
-
-//       }else{
-
-//         let credentials = {
-//           nombres: this.textoNombre
-//         };
-
-
-//          this.registerService.crearCuenta(credentials).then((result) => {
-//             console.log(result);
-
-//             this.storage.set(Registro.nombre, this.textoNombre);
-
-
-
-
-
-
-//         }, (err) => {
-
-//             console.log(err);
-//             this. errorFunc('Wrong credentials ! try again')
-//             console.log("credentials: "+ JSON.stringify(credentials))
-
-
-//         });
-
-//       }
-
-//    }
-
-
-// }
 
 
   saveNombre(){
