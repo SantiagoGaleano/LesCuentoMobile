@@ -24,10 +24,11 @@ export class RegistroCedulaPage {
   matches: String[];
   isRecording = false;
   textoCedula: any;
+  key:string = 'cedula';
 
 
   constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
-  this.textoCedula="";
+  
   }
 
   stopListening() {
@@ -95,20 +96,14 @@ export class RegistroCedulaPage {
     
   }
 
-  errorFunc(message){
-    let alert = this.alertCtrl.create({
-      title: 'Warining!',
-      subTitle: message,
-      buttons: ['OK']
-    });
-    alert.present();
+  saveCedula(){
+    this.storage.set(this.key, this.textoCedula);
   }
-  cargarCedula(){
-    this.storage.set(Registro.cedula, this.textoCedula);
-    this.storage.get(Registro.cedula).then((valCedula) => {
-      console.log("la variable cedula tiene: ", valCedula);
-  
-   });
+
+  loadCedula(){
+    this.storage.get(this.key).then((val) =>{
+        console.log('Tu cedula es', val);
+    });
   }
   goBack():void {
     this.navCtrl.pop();

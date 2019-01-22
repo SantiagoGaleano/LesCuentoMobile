@@ -24,6 +24,7 @@ export class RegistroGeneroPage {
   matches: String[];
   isRecording = false;
   textoGenero: any;
+  key:string = 'genero';
 
   constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
@@ -96,12 +97,14 @@ export class RegistroGeneroPage {
     
   }
 
-  cargarGenero(){
-    this.storage.set(Registro.genero, this.textoGenero);
-    this.storage.get(Registro.genero).then((valGenero) => {
-      console.log("la variable apellido tiene: ", valGenero);
-  
-   });
+  saveGenero(){
+    this.storage.set(this.key, this.textoGenero);
+  }
+
+  loadGenero(){
+    this.storage.get(this.key).then((val) =>{
+        console.log('Tu genero es', val);
+    });
   }
   goBack():void{
     this.navCtrl.pop();

@@ -23,7 +23,7 @@ export class RegistroEdadPage {
   matches: String[];
   isRecording = false;
   textoEdad: any;
-
+  key:string = 'edad';
   constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams,private audio: AudioProvider, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
   }
 
@@ -75,21 +75,29 @@ export class RegistroEdadPage {
 
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad RegistroEdadPage');
-    this.audio.playAudio('../../assets/sounds/suEdad.mp3');
+    // console.log('ionViewDidLoad RegistroEdadPage');
+    // this.audio.playAudio('../../assets/sounds/suEdad.mp3');
 
-    setTimeout(()=> {
-      this.startListening();
-      },5000);
-      setTimeout(()=> {
-        this.completarTexto();
-        this.tts.speak({
-          text:  "Usted ha dicho " + this.textoEdad,
-          locale: 'es-MX',
-          rate: 1});
-      },12000);
+    // setTimeout(()=> {
+    //   this.startListening();
+    //   },5000);
+    //   setTimeout(()=> {
+    //     this.completarTexto();
+    //     this.tts.speak({
+    //       text:  "Usted ha dicho " + this.textoEdad,
+    //       locale: 'es-MX',
+    //       rate: 1});
+    //   },12000);
+  }
+  saveEdad(){
+    this.storage.set(this.key, this.textoEdad);
   }
 
+  loadEdad(){
+    this.storage.get(this.key).then((val) =>{
+        console.log('Tu edad es', val);
+    });
+  }
   goCedula():void{
     this.navCtrl.push(RegistroCedulaPage);
   }

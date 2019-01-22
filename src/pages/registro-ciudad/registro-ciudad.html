@@ -24,7 +24,7 @@
         </button>
 
   </div>
-  <ion-input placeholder="Text Input" [(ngModel)]="textoCiudad"></ion-input>
+
 
   <ion-grid >
         <ion-col  >
@@ -47,6 +47,9 @@
         </ion-col>
   </ion-grid>
 
+  <ion-input placeholder="Text Input" [(ngModel)]="textoCiudad"></ion-input>
+  <button   ion-button color="secondary"   (click)="saveCiudad()">Save Ciudad</button>
+  <button   ion-button color="secondary"   (click)="loadCiudad()">load Ciudad</button>
   <button   ion-button color="secondary"   (click)="myRegister()"   >Register</button>
 
 

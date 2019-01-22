@@ -25,10 +25,10 @@ export class RegistroNombrePage {
   matches: String[];
   isRecording = false;
   textoNombre: any;
-  txtNom: any;
+  key:string = 'nombres';
   constructor(public navCtrl: NavController, public navParams: NavParams, private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech,private storage: Storage ) {
-  this.textoNombre="";
-  this.txtNom="";
+
+  
   }
 
   
@@ -160,20 +160,15 @@ export class RegistroNombrePage {
 // }
 
 
-cargarNombre(){
-  this.txtNom=this.textoNombre;
-  console.log("txtNom= ", this.txtNom);
-  this.storage.set(Registro.nombre, this.txtNom);
-  this.storage.get(Registro.nombre).then((valNombre) => {
-    this.txtNom=valNombre;
-    console.log("txtNom= ", this.txtNom);
-    console.log("variable en nombre: ",valNombre);
- });
+  saveNombre(){
+    this.storage.set(this.key, this.textoNombre);
+  }
 
-
-}
-
-
+  loadNombre(){
+    this.storage.get(this.key).then((val) =>{
+        console.log('Tu nombre es', val);
+    });
+  }
 
   goApellido():void{
     this.navCtrl.push(RegistroApellidoPage);

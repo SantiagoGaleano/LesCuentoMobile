@@ -26,9 +26,8 @@ export class RegistroApellidoPage {
   matches: String[];
   isRecording = false;
   textoApellidos: any;
-  
+  key:string = 'apellidos';
   constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
-  this.textoApellidos="";
   }
 
  
@@ -102,13 +101,16 @@ export class RegistroApellidoPage {
      
   }
 
-  cargarApellido(){
-    this.storage.set(Registro.apellido, this.textoApellidos);
-    this.storage.get(Registro.apellido).then((valApellido) => {
-      console.log("la variable apellido tiene: ", valApellido);
-  
-   });
+  saveApellidos(){
+    this.storage.set(this.key, this.textoApellidos);
   }
+
+  loadApellidos(){
+    this.storage.get(this.key).then((val) =>{
+        console.log('Tu apellido es', val);
+    });
+  }
+
   
   goEdad():void {
     this.navCtrl.push(RegistroEdadPage);

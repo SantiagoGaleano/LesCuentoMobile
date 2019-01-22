@@ -19,7 +19,7 @@
        <button class="btnAtras" (click)="goBack()">
          <svg xmlns="http://www.w3.org/2000/svg" class= "svgAtras" viewBox="0 0 100 100"><defs></defs><title>BotonAtras</title><g id="Texto"><rect class="cls-1" width="200" height="200" rx="11.3" ry="11.3"/><polygon class="cls-2" points="12.5 50 55.1 12.5 55.1 28.6 87.5 28.6 87.5 71.4 55.1 71.4 55.1 87.5 12.5 50"/></g></svg>
       </button>
-      <button class ="btnAdelante" (click)="goApellido()" (click)="cargarNombre()">
+      <button class ="btnAdelante" (click)="goApellido()" (click)="loadNombre()">
                   <svg xmlns="http://www.w3.org/2000/svg" class="svgAdelante" viewBox="0 0 173 173"><defs></defs><title>Botones</title><g id="Figuras"><rect class="cls-1" width="173" height="173" rx="11.3" ry="11.3"/></g><g id="Texto"><polygon class="cls-2" points="156.6 86.5 76.9 156.6 76.9 126.5 16.4 126.5 16.4 46.5 76.9 46.5 76.9 16.4 156.6 86.5"/></g></svg>
       </button>
 
@@ -47,7 +47,7 @@
 
 
 <ion-input placeholder="Text Input" [(ngModel)]="textoNombre"></ion-input>
-<button   ion-button color="secondary"   (click)="myRegister()"   >Register</button>
+<button   ion-button color="secondary"   (click)="saveNombre()">Save Nombre</button>
 
 
 

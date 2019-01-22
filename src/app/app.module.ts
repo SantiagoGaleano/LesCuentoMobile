@@ -23,6 +23,8 @@ import { AudioProvider } from '../providers/audio/audio';
 import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { RestProvider } from '../providers/rest/rest';
+import { NativeStorage } from '@ionic-native/native-storage';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -41,8 +43,8 @@ import { RestProvider } from '../providers/rest/rest';
     IonicModule.forRoot(MyApp),
     LottieAnimationViewModule.forRoot(),
     IonicStorageModule.forRoot(),
-    HttpModule
-
+    HttpModule,
+    
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -64,6 +66,8 @@ import { RestProvider } from '../providers/rest/rest';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioProvider,
     RestProvider,
+    NativeStorage
+    
 
   ]
 })
