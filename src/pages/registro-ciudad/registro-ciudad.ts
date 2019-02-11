@@ -8,6 +8,7 @@ import { Storage } from '@ionic/storage';
 import {Registro as Registro } from '../../app/app.config'
 import { RestProvider } from '../../providers/rest/rest';
 
+import { Geolocation } from '@ionic-native/geolocation';
 
 /**
  * Generated class for the RegistroCiudadPage page.
@@ -34,8 +35,20 @@ export class RegistroCiudadPage {
   textoCiudad: any;
   key:string = 'ciudad_muni';
 
+  nlatitude: number;
+  nlongitude: number;
 
-  constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech ) {
+  constructor(private storage:Storage,public navCtrl: NavController, public navParams: NavParams, private registerService: RestProvider , private audio: AudioProvider,  public alertCtrl:  AlertController, private speechRecognition: SpeechRecognition, private plt: Platform, private cd: ChangeDetectorRef, private tts: TextToSpeech, private geolocation: Geolocation) {
+
+
+    plt.ready().then(() => {
+
+      geolocation.getCurrentPosition().then((data) => {
+        this.nlatitude = data.coords.latitude;
+        this.nlongitude = data.coords.longitude;
+      });
+
+    });
   }
 
   stopListening() {
@@ -173,6 +186,8 @@ export class RegistroCiudadPage {
           cedula: this.cedulaInser,
           genero:this.generoInser,
           ciudad_muni: this.textoCiudad,
+          latitud: this.nlatitude,
+          longitud: this.nlongitude,
         };
 
 

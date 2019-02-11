@@ -1,8 +1,7 @@
 
   
  .lblTexto{
-   
-   background-color: #32ab94;
+
    font-size: 30px;
    padding-right: 30px;
    padding-left:30px;
@@ -13,12 +12,11 @@
  }
 
 .fondo{
-  background-color: #00BCD4;
+  background-color: white; /* For browsers that do not support gradients */
+  background-image: linear-gradient(to bottom right, white,#53A2DA); /* Standard syntax (must be last) */
 }
 
-.bPLay{
-  background-color:#32AB94;
-}
+
 .divBotonesNav{
   text-align: center;
 }
@@ -36,20 +34,22 @@
   margin-top: 20px;
   text-align:left;
 }
+.svgCajaDeTexto{
+  width: 250px;
+  height: 150px;
+}
 .svgAtras{
-  .cls-1{fill:#32ab94;}
-  .cls-2{fill:#fff;}
+  .cls-1{fill:#EB5309;}.cls-2{opacity:0.15;}.cls-3{fill:#e6e7e7;}.cls-4{fill:#fff;}
 }
 .svgAdelante{
-  .cls-1{fill:#32ab94;}
-  .cls-2{fill:#fff;}
+  .cls-1{fill:#F0B82D;}.cls-2{opacity:0.15;}.cls-3{fill:#fff;}.cls-4{fill:#e6e7e7;}
 }
 .btnHablar{
   width: 95px;
-  
 }
+
 .svgHablar{
-  .cls-1{fill:#f3df1d;}.cls-2{fill:#fff;}
+  cls-1{fill:url(#linear-gradient);}.cls-2{opacity:0.15;}.cls-3{fill:#b3b3b2;}.cls-4{fill:gray;}.cls-5{fill:none;stroke:#4e4d4d;stroke-miterlimit:10;stroke-width:20px;}.cls-6{fill:#4e4d4d;}
 }
 .divCedula{
   margin-top:60px;

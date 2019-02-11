@@ -25,6 +25,8 @@ import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { RestProvider } from '../providers/rest/rest';
 import { NativeStorage } from '@ionic-native/native-storage';
 
+import { Geolocation } from '@ionic-native/geolocation';
+
 @NgModule({
   declarations: [
     MyApp,
@@ -66,9 +68,8 @@ import { NativeStorage } from '@ionic-native/native-storage';
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     AudioProvider,
     RestProvider,
-    NativeStorage
-    
-
+    NativeStorage,
+    Geolocation
   ]
 })
 export class AppModule {}

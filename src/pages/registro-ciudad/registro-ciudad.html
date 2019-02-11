@@ -16,12 +16,12 @@
 
   <div class="divBotonesNav">
 
-         <button class="btnAtras" (click)="goBack()">
-           <svg xmlns="http://www.w3.org/2000/svg" class= "svgAtras" viewBox="0 0 100 100"><defs></defs><title>BotonAtras</title><g id="Texto"><rect class="cls-1" width="200" height="200" rx="11.3" ry="11.3"/><polygon class="cls-2" points="12.5 50 55.1 12.5 55.1 28.6 87.5 28.6 87.5 71.4 55.1 71.4 55.1 87.5 12.5 50"/></g></svg>
-        </button>
-        <button class ="btnAdelante" (click)="saveCiudad()" (click)="myRegister()">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="svgAdelante" viewBox="0 0 173 173"><defs></defs><title>Botones</title><g id="Figuras"><rect class="cls-1" width="173" height="173" rx="11.3" ry="11.3"/></g><g id="Texto"><polygon class="cls-2" points="156.6 86.5 76.9 156.6 76.9 126.5 16.4 126.5 16.4 46.5 76.9 46.5 76.9 16.4 156.6 86.5"/></g></svg>
-        </button>
+      <button class="btnAtras" (click)="goBack()">
+          <svg class="svgAtras" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 125 125"><defs><linearGradient id="linear-gradient" x1="62.5" x2="62.5" y2="125" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#eb5309"/><stop offset="1" stop-color="#a53a13"/></linearGradient></defs><title>FinalesParaSVG</title><rect class="cls-1" width="125" height="125" rx="62.5" ry="62.5"/><path class="cls-2" d="M83.8,40.9,67.7,24.8V99.9l19.9,19.9a62.6,62.6,0,0,0,37.4-54L100.1,40.9Z"/><polygon class="cls-3" points="25 62.3 67.6 99.8 67.6 83.8 100 83.8 100 62.2 25 62.3"/><polygon class="cls-4" points="25 62.3 67.6 24.8 67.6 40.9 100 40.9 100 83.8 67.6 83.8 67.6 99.9 25 62.3"/><polygon class="cls-3" points="25 62.3 67.6 99.8 67.6 83.8 100 83.8 100 62.2 25 62.3"/></svg>
+    </button>
+    <button class ="btnAdelante" (click)="saveCiudad()" (click)="myRegister()">
+                <svg class="svgAdelante" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 125 125"><defs><linearGradient id="linear-gradient" x1="62.5" x2="62.5" y2="125" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f0b82d"/><stop offset="0.31" stop-color="#edb62c"/><stop offset="0.56" stop-color="#e3ae29"/><stop offset="0.79" stop-color="#d2a224"/><stop offset="1" stop-color="#bb911d"/></linearGradient></defs><title>FinalesParaSVG</title><rect class="cls-1" width="125" height="125" rx="62.5" ry="62.5"/><path class="cls-2" d="M104.8,62.3,122.5,80a62.6,62.6,0,0,1-52.3,44.5L29.6,83.9"/><polygon class="cls-3" points="104.7 62.3 62.1 24.8 62.1 40.9 29.7 40.9 29.7 83.8 62.1 83.8 62.1 99.9 104.7 62.3"/><polygon class="cls-4" points="104.7 62.3 62.1 99.9 62.1 83.8 29.7 83.8 29.7 62.2 104.7 62.3"/></svg>
+    </button>
 
   </div>
 
@@ -30,18 +30,20 @@
         <ion-col  >
           <ion-row style="justify-content: center" >
               <p class="lblTexto"> 6.Ciudad o Municipio</p>
+              <p class="lblTexto"> Latitud {{nlatitude}}</p>
+              <p class="lblTexto"> Longitud {{nlongitude}}</p>
 
           </ion-row>
           <ion-row style="justify-content: center;margin-top:80px">
-                    <button class="btnHablar">
-                          <svg xmlns="http://www.w3.org/2000/svg" class= "svgHablar" viewBox="0 0 173 173"><defs></defs><title>BotonHablar</title><g id="Figuras"><rect class="cls-1" width="173" height="173" rx="11.3" ry="11.3"/><path class="cls-2" d="M20.5,150.4V28.7a9.2,9.2,0,0,1,9.1-9.2H82.5a62,62,0,0,1,.4,17.2C81.4,48.1,101.6,66.6,100.6,70c-1.5,5-5.6,5.3-10.2,7.1s-2.5,4.9-1.5,8.6,3.9,9.5,2.9,11.3c-2.2,4.2-22.6,4.2-25.6,4.1-1.1-.1-2.7-.5-2.2,1.6.8,4.1,2.3,8.5,5.7,11.2S78,119,82,119.5s3.8,1.8,3.2,4.6a31.1,31.1,0,0,0-.5,10.1c1.1,8.6-4.6,12.2-12.9,14.7-11.1,3.4-18.5,2.2-30,1.3-13.9-1-13.7,1.5-18.8,6.4l-.3-.4a9.1,9.1,0,0,1-2.2-5Z"/><polygon class="cls-2" points="101.4 115.1 154.9 117.3 154.9 108.1 101.4 110.3 101.4 115.1"/><polygon class="cls-2" points="100.3 97.8 152.8 87.3 150.6 78.3 99.1 93.2 100.3 97.8"/><polygon class="cls-2" points="100.3 126 152.8 136.5 150.6 145.5 99.1 130.6 100.3 126"/></g></svg>
-                    </button>
+              <button class="btnHablar">
+                  <svg class="svgHablar" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 250 250"><defs><linearGradient id="linear-gradient" y1="125" x2="250" y2="125" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#30b644"/><stop offset="0.3" stop-color="#2fb343"/><stop offset="0.54" stop-color="#2ba940"/><stop offset="0.76" stop-color="#24983a"/><stop offset="0.96" stop-color="#1b8032"/><stop offset="1" stop-color="#197b30"/></linearGradient></defs><title>FinalesParaSVG</title><path class="cls-1" d="M250,125A125,125,0,1,1,125,0,125,125,0,0,1,250,125"/><path class="cls-2" d="M136.1,39.4,114,114H73.5l14,41.5,37.2,24,.3,29.6,88.4,4.3A124.9,124.9,0,0,0,250,125.9Z"/><path class="cls-3" d="M125,159.3h0A27.3,27.3,0,0,1,97.8,132V64.3A27.3,27.3,0,0,1,125,37h0"/><path class="cls-4" d="M125,159.3A27.3,27.3,0,0,0,152.2,132V64.3A27.3,27.3,0,0,0,125,37"/><path class="cls-5" d="M176.2,111.4c0,35.1-23.1,63.5-51.6,63.5S73,146.5,73,111.4"/><line class="cls-5" x1="124.6" y1="174.9" x2="124.6" y2="206.1"/><line class="cls-5" x1="73" y1="206.1" x2="176.2" y2="206.1"/><circle class="cls-6" cx="73.5" cy="114" r="11"/><circle class="cls-6" cx="176.2" cy="114" r="11"/></svg>
+        </button>    
+
 
           </ion-row >
           <ion-row style="justify-content: center">
                     <div class="divCiudad">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 244 340.3"><defs><style>.cls-1{fill:#00bcd4;}.cls-2{fill:#80d4d6;}.cls-3{fill:#15acc2;}</style></defs><title>Icono</title><g id="Fondos"><rect class="cls-1" x="-238.5" y="-847.1" width="720" height="1280"/></g><g id="Figuras"><path class="cls-2" d="M78.7,36l22.6-12.2h.2l20.3-17,.4-.2L145.4,0h.7l12.8,5.2a1,1,0,0,1,.6,1.3L157.4,15a1.2,1.2,0,0,1-.6.8l-20.6,7.9a.7.7,0,0,0-.5.4l-14.4,20a1.1,1.1,0,0,0-.2.6V75.4a.6.6,0,0,0,.1.4l9.6,25.7a1,1,0,0,0,.5.6l26.8,14.6h.1l31,12.3h.4l40.4,1.5a1.2,1.2,0,0,1,1.1,1.3l-5.5,28.9a1.3,1.3,0,0,0,.1.6l9.7,25.1v.2l8.6,38.8a1.1,1.1,0,0,1-1.6,1.2l-15.8-7.9H189.5a1.1,1.1,0,0,0-1,1.6L198.8,240a1.2,1.2,0,0,1-.3,1.4l-16.6,12.1a1.1,1.1,0,0,0-.3,1.4L195,280.8a2,2,0,0,1,.1.7l-10.4,57.9a1.1,1.1,0,0,1-1.7.7l-5.7-4.5-.6-.2-5.5-.6a1,1,0,0,1-.8-1.6l11-21.4a1.2,1.2,0,0,0-.5-1.5l-19.3-7.7h-.4L121.8,305a1.1,1.1,0,0,1-1-.6l-13.5-24.7-.4-.3L78.4,259a.1.1,0,0,1-.1-.1L53.9,247.5h-.4L31,245.8a.7.7,0,0,1-.6-.2L.5,225.2a1.1,1.1,0,0,1-.2-1.7l21.2-22,.2-.2,15.4-30.1a.7.7,0,0,0,.1-.5l-.8-32.4a.6.6,0,0,0-.1-.4L23.6,107.6a1,1,0,0,1,.4-1.3L46.9,89.7l.3-.3L66.8,60h.1L78.2,36.4A1,1,0,0,1,78.7,36Z"/><path class="cls-3" d="M134.2,202a38.4,38.4,0,1,1,4.9-5.2l33.2,30.8-7.5,7.4ZM88,151.5a30.7,30.7,0,1,0,43.4,0A30.5,30.5,0,0,0,88,151.5Z"/></g></svg>
-
+                        <svg id="Objetos" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 250 350"><defs><style>.cls-1{fill:#fff;}.cls-2{fill:#f5f5f5;}.cls-3{fill:#53a2da;}</style></defs><title>FinalesParaSVG</title><path class="cls-1" d="M80.6,37l23.2-12.5h.2L124.7,6.9l.5-.3L149,0h.7l13.1,5.4a1.2,1.2,0,0,1,.7,1.3l-2.2,8.6a1,1,0,0,1-.7.8l-21,8.1-.5.4L124.3,45.3a1.4,1.4,0,0,0-.2.7V77.5c0,.2,0,.3.1.4l9.9,26.5a.6.6,0,0,0,.5.6l27.3,15h.2l31.7,12.5h.4l41.5,1.7a1,1,0,0,1,1,1.3l-5.6,29.7a1.3,1.3,0,0,0,.1.6l10,25.8v.2l8.8,39.9a1.1,1.1,0,0,1-1.6,1.2L232.2,225h-38a1.1,1.1,0,0,0-1,1.6l10.5,20.4a1.2,1.2,0,0,1-.3,1.4l-17,12.4a1.1,1.1,0,0,0-.4,1.4l13.7,26.7a1,1,0,0,1,.2.7l-10.6,59.6a1.2,1.2,0,0,1-1.8.7l-5.9-4.6c-.1-.2-.3-.2-.5-.3l-5.7-.6a1.1,1.1,0,0,1-.9-1.6l11.4-22a1.1,1.1,0,0,0-.6-1.5l-19.7-8h-.5l-40.3,2.4a1.3,1.3,0,0,1-1.1-.5l-13.8-25.4-.3-.4L80.4,266.4h-.2l-25-11.7h-.4l-23.1-1.7-.5-.2L.5,231.6a1.1,1.1,0,0,1-.2-1.7L22,207.3l.2-.3L38,176.1c.1-.2.2-.4.1-.5l-.8-33.4a.6.6,0,0,0-.1-.4l-13-31.1a1.1,1.1,0,0,1,.3-1.3L48.1,92.2l.3-.2,20-30.3c.1,0,.1,0,.1-.1L80.1,37.5Z"/><path class="cls-2" d="M109.7,287.4l-5.9-1.8V24.5h.2L124.8,6.9l.4-.3L149,0h.7l13.1,5.4a1.2,1.2,0,0,1,.7,1.3l-2.2,8.6a1,1,0,0,1-.7.8l-21,8.1-.5.4L124.3,45.3a1.4,1.4,0,0,0-.2.7V77.5c0,.2,0,.3.1.4l9.9,26.5c.1.3.2.5.5.6l27.3,15h.2l31.7,12.5h.4l41.5,1.7a1.1,1.1,0,0,1,1.1,1.3l-5.6,29.7a.6.6,0,0,0,0,.6l10,25.8v.2l8.8,39.9a1.1,1.1,0,0,1-1.6,1.2L232.2,225h-38a1.1,1.1,0,0,0-1,1.6l10.5,20.4a1.2,1.2,0,0,1-.3,1.4l-17,12.4a1.1,1.1,0,0,0-.4,1.4l13.8,26.7a1.7,1.7,0,0,1,.1.7l-10.6,59.6a1.2,1.2,0,0,1-1.8.7l-5.9-4.6c-.1-.2-.3-.2-.5-.3l-5.7-.6a1,1,0,0,1-.8-1.6l11.3-22a1.1,1.1,0,0,0-.6-1.5l-19.7-8h-.5l-40.3,2.4a1,1,0,0,1-1-.5l-14.2-25.8"/><path class="cls-3" d="M137.5,207.7a39.1,39.1,0,1,1,5.1-5.3L176.5,234l-7.6,7.7ZM90.2,155.8a31.5,31.5,0,1,0,44.4,0A31.6,31.6,0,0,0,90.2,155.8Z"/></svg>
                     </div>
           </ion-row>
         </ion-col>
