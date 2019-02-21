@@ -24,8 +24,18 @@ import { SpeechRecognition } from '@ionic-native/speech-recognition';
 import { TextToSpeech } from '@ionic-native/text-to-speech';
 import { RestProvider } from '../providers/rest/rest';
 import { NativeStorage } from '@ionic-native/native-storage';
-
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 import { Geolocation } from '@ionic-native/geolocation';
+
+var firebaseConfig = {
+  apiKey: "AIzaSyAkfpqWUDDL06j-uJbrmTWWD1-WRpbAAqg",
+  authDomain: "lescuento-20dac.firebaseapp.com",
+  databaseURL: "https://lescuento-20dac.firebaseio.com",
+  projectId: "lescuento-20dac",
+  storageBucket: "lescuento-20dac.appspot.com",
+  messagingSenderId: "565201867851"
+};
 
 @NgModule({
   declarations: [
@@ -46,7 +56,8 @@ import { Geolocation } from '@ionic-native/geolocation';
     LottieAnimationViewModule.forRoot(),
     IonicStorageModule.forRoot(),
     HttpModule,
-    
+    AngularFireModule.initializeApp(firebaseConfig,'lescuento'),
+    AngularFireDatabaseModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [

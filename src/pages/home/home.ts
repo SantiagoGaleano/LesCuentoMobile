@@ -3,6 +3,8 @@ import { AudioProvider } from './../../providers/audio/audio';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -21,7 +23,7 @@ export class HomePage {
 
 
     this.lottieConfig = {
-      path: 'assets/AlbaIntro.json',
+      path:'assets/AlbaIntro.json' ,
       autoplay:true
 
 
