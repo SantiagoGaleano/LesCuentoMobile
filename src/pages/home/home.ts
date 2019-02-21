@@ -3,8 +3,12 @@ import { AudioProvider } from './../../providers/audio/audio';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
+<<<<<<< HEAD
 
 
+=======
+import {  AngularFireDatabase } from 'angularfire2/database';
+>>>>>>> d8af934d998e0b03a079000bcb308e6b845de487
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -23,7 +27,11 @@ export class HomePage {
 
 
     this.lottieConfig = {
+<<<<<<< HEAD
       path:'assets/AlbaIntro.json' ,
+=======
+      path: 'https://firebasestorage.googleapis.com/v0/b/lescuento-20dac.appspot.com/o/AlbaIntro.json?alt=media&token=8df0b77b-1782-4c32-a67a-b2a93a98c7f7',
+>>>>>>> d8af934d998e0b03a079000bcb308e6b845de487
       autoplay:true
 
 
