@@ -26,9 +26,10 @@ import { RestProvider } from '../providers/rest/rest';
 import { NativeStorage } from '@ionic-native/native-storage';
 import { Geolocation } from '@ionic-native/geolocation';
 import { AngularFireModule } from 'angularfire2';
-import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { AngularFireDatabaseModule, AngularFireDatabase } from 'angularfire2/database';
+import {AngularFireAuthModule} from 'angularfire2/auth';
 
-var firebaseConfig {
+export const firebaseConfig = {
   apiKey: "AIzaSyAkfpqWUDDL06j-uJbrmTWWD1-WRpbAAqg",
     authDomain: "lescuento-20dac.firebaseapp.com",
     databaseURL: "https://lescuento-20dac.firebaseio.com",
@@ -57,8 +58,9 @@ var firebaseConfig {
     IonicStorageModule.forRoot(),
     HttpModule,
     AngularFireModule.initializeApp(firebaseConfig,'lescuento'),
-    AngularFireDatabaseModule
-    
+    AngularFireDatabaseModule,
+    AngularFireAuthModule
+
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -81,7 +83,8 @@ var firebaseConfig {
     AudioProvider,
     RestProvider,
     NativeStorage,
-    Geolocation
+    Geolocation,
+    AngularFireDatabase
   ]
 })
 export class AppModule {}

@@ -1,5 +1,5 @@
 <ion-header>
-  
+
 </ion-header>
 
 <ion-content>
@@ -28,6 +28,8 @@
     <button (click)="goNombre()" class ="botonR" id= "botonR" ion-button></button>
   </div>
 </div>
+
+<p *ngFor="let item of items | async"></p>
 
 
 

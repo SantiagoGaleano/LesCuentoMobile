@@ -4,6 +4,7 @@ import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
 import {  AngularFireDatabase } from 'angularfire2/database';
+import { Observable } from 'rxjs-compat';
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
@@ -14,27 +15,32 @@ export class HomePage {
   public lottieConfig2: Object;
   private anim: any;
 
+   items: Observable<any[]>;
+
   constructor(
     public navCtrl: NavController,
-    private audio: AudioProvider
+    private audio: AudioProvider,
+    afDB: AngularFireDatabase
   ) {
 
-
-
-    this.lottieConfig = {
-      path: 'https://firebasestorage.googleapis.com/v0/b/lescuento-20dac.appspot.com/o/AlbaIntro.json?alt=media&token=8df0b77b-1782-4c32-a67a-b2a93a98c7f7',
-      autoplay:true
+     this.items=afDB.list('intro').valueChanges();
 
 
 
-    };
-    this.lottieConfig2 = {
-      path: 'assets/AlbaFinal.json',
-      autoplay:true,
-      loop:true
+    // this.lottieConfig = {
+    //   path: 'https://lescuento-20dac.firebaseio.com/intro',
+    //   autoplay:true
 
 
-    };
+
+    // };
+    // this.lottieConfig2 = {
+    //   path: 'assets/AlbaFinal.json',
+    //   autoplay:true,
+    //   loop:true
+
+
+    // };
 
   //  let  audio=new Audio();
   //   audio.src = "../../assets/sounds/alba.mp3";
