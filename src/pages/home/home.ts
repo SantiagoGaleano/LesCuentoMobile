@@ -1,15 +1,20 @@
+import { Observable } from 'rxjs';
 import { RegistroNombrePage } from './../registro-nombre/registro-nombre';
 import { AudioProvider } from './../../providers/audio/audio';
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
 import * as $ from 'jquery';
 import {  AngularFireDatabase } from 'angularfire2/database';
-import { Observable } from 'rxjs-compat';
+
+
+
+
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html',
 })
 export class HomePage {
+
 
   public lottieConfig: Object;
   public lottieConfig2: Object;
@@ -20,20 +25,32 @@ export class HomePage {
   constructor(
     public navCtrl: NavController,
     private audio: AudioProvider,
-    afDB: AngularFireDatabase
+    afDB: AngularFireDatabase,
   ) {
 
      this.items=afDB.list('intro').valueChanges();
 
 
 
-    // this.lottieConfig = {
-    //   path: 'https://lescuento-20dac.firebaseio.com/intro',
-    //   autoplay:true
 
 
 
-    // };
+
+
+
+
+      this.items.subscribe(data => this.lottieConfig={
+
+        animtationData:data,
+        autoplay:true
+      } );
+      // animationData: this.items,
+      //  path: 'https://firebasestorage.googleapis.com/v0/b/lescuento-20dac.appspot.com/o/AlbaIntro.json?alt=media&token=44a5af19-8301-42a0-a2bb-28c5e1e55859',
+
+
+
+
+
     // this.lottieConfig2 = {
     //   path: 'assets/AlbaFinal.json',
     //   autoplay:true,

@@ -4,16 +4,16 @@
 
 <ion-content>
 
-<div class = "divAnimationIntro">
-        <lottie-animation-view
+ <div  class = "divAnimationIntro" >
+        <lottie-animation-view *ngIf="lottieConfig"
                           [options]="lottieConfig"
                           [width]="300"
                           [height]="600"
                           (animCreated)="handleAnimation($event)">
           </lottie-animation-view>
 </div>
-<div class = "divAnimationFinal" >
-  <lottie-animation-view
+<div class = "divAnimationFinal"  >
+  <lottie-animation-view *ngIf="lottieConfig2"
                     [options]="lottieConfig2"
                     [width]="300"
                     [height]="600"
@@ -21,6 +21,8 @@
     </lottie-animation-view>
 </div>
 
+
+ <!-- <h1>{{ items | async | json }}</h1> -->
 
 <div class = "divContent"  >
   <div class= "divBotones" >
