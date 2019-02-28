@@ -30,15 +30,6 @@ export class HomePage {
 
      this.items=afDB.list('intro').valueChanges();
 
-
-
-
-
-
-
-
-
-
       this.items.subscribe(data => this.lottieConfig={
 
         animtationData:data,
